@@ -10,7 +10,7 @@ static uint16_t fsrBaseline[MAX_FSR_CHANNELS] = {0};
 static bool isCalibrated[MAX_FSR_CHANNELS] = {false};
 
 void initFsrAdc(void) {
-  // Use DEFAULT (VCC = 5V) reference for ATmega32U4 (Pro Micro)
+  // Use DEFAULT (VCC = 3.3V) reference for ATmega32U4 (Feather 32u4)
   analogReference(DEFAULT);
   // Reset calibration on init
   for (uint8_t i = 0; i < MAX_FSR_CHANNELS; i++) {

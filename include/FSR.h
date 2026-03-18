@@ -17,10 +17,10 @@ This will return the reading with baseline subtracted
 #define FSR_PORT_1 A0
 #define FSR_PORT_2 A1
 #define FSR_PORT_3 A2
-#define FSR_PORT_4 A3  // .. tied to port 5
-#define FSR_PORT_5 6   // A6 tied to port 4
-#define FSR_PORT_6 4   // A7 not working
-#define FSR_PORT_7 8   // A8
+#define FSR_PORT_4 A3
+#define FSR_PORT_5 A4
+#define FSR_PORT_6 A5
+#define FSR_PORT_7 A11  // Shared with D12
 
 void initFsrAdc(void);
 void calibrateFsrs(uint8_t* ports, uint8_t numPorts);

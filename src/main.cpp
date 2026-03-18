@@ -3,7 +3,7 @@
 #include "FSR.h"
 
 // NeoPixel Configuration
-#define LED_PIN 9
+#define LED_PIN 13
 #define NUM_LEDS 8
 
 // FSR Configuration - add/remove ports here to change active FSRs
@@ -28,7 +28,7 @@ void setup() {
   strip.show();
   
   // Set status LED to green to indicate ready
-  strip.setPixelColor(STATUS_LED, strip.Color(0, 50, 0));
+  strip.setPixelColor(STATUS_LED, strip.Color(0, 12, 0));
   strip.show();
 }
 
@@ -37,9 +37,9 @@ void loop() {
   for (uint8_t i = 0; i < numFSRs; i++) {
     FSR_values[i] = readFsr(FSR_ports[i], i);
     
-    // Map FSR value to brightness (0-255), constrain to valid range
-    // Higher pressure = brighter LED
-    brightness[i] = constrain(map(FSR_values[i], 0, 600, 0, 100), 0, 100);
+    // Map FSR value to brightness (0-25), constrain to valid range
+    // Higher pressure = brighter LED (capped at 25 for battery savings)
+    brightness[i] = constrain(map(FSR_values[i], 0, 600, 0, 12), 0, 12);
     
     // Print FSR value
     Serial.print(FSR_values[i]);
@@ -53,7 +53,7 @@ void loop() {
   Serial.println();  // New line after all values
   
   // Keep status LED green (dimmed)
-  strip.setPixelColor(STATUS_LED, strip.Color(0, 50, 0));
+  strip.setPixelColor(STATUS_LED, strip.Color(0, 12, 0));
   strip.show();
   
   delay(10);  // Small delay for stability
